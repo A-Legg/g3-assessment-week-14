@@ -22,8 +22,10 @@ class PrescriptionsController < ApplicationController
 
 
     if @prescription.save
+      flash[:notice] = "Your prescription has been successfully created!"
       redirect_to patient_path(@patient.id)
     else
+      flash[:error] = "Your prescription could not be saved"
       render :new
     end
   end

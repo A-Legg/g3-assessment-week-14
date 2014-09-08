@@ -1,6 +1,8 @@
 <h1>Add a prescription to </h1>
 
-<%= form_for @prescription, url: "/patients/#{@patient.id}/prescriptions" do |f| %>
+<%= form_for  [@patient, @prescription], url: "/patients/#{@patient.id}/prescriptions" do |f| %>
+
+  <p class="error"><%= flash[:error] %></p>
 
   <div class="errors">
     <% if @prescription.errors.full_messages.any? %>
