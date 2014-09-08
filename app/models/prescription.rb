@@ -1,9 +1,10 @@
 class Prescription < ActiveRecord::Base
-
+  belongs_to :patient
   has_many :medications
-  belongs_to :user
 
-  validates :medication, presence: true
+
+
+  validates :medication_id, presence: true
   validates :dosage, presence: true
   validates :schedule, presence: true
   validates :starts_on, presence: true

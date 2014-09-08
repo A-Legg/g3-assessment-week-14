@@ -2,30 +2,32 @@ class PrescriptionsController < ApplicationController
 
   def new
     @prescription = Prescription.new
-    @medications = Medication.all
+
     @patient = Patient.find_by(params[:id])
 
   end
 
   def create
     @patient = Patient.find_by(params[:id])
-    @medications = Medication.all
+
     @prescription = Prescription.new
-      @prescription.medication_id = params[:prescription][:medication_id]
+    @prescription.medication_id = params[:prescription][:medication_id]
     @prescription.patient_id = @patient.id
     @prescription.user_id = current_user.id
-      @prescription.dosage = params[:prescription][:dosage]
-      @prescription.schedule = params[:prescription][:schedule]
-      @prescription.starts_on = Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i)
-      @prescription.ends_on = Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i)
-
-
+    @prescription.dosage = params[:prescription][:dosage]
+    @prescription.schedule = params[:prescription][:schedule]
+    @prescription.starts_on = Date.civil(params[:prescription]['starts_on(1i)'].to_i, params[:prescription]['starts_on(2i)'].to_i, params[:prescription]['starts_on(3i)'].to_i)
+    @prescription.ends_on = Date.civil(params[:prescription]['ends_on(1i)'].to_i, params[:prescription]['ends_on(2i)'].to_i, params[:prescription]['ends_on(3i)'].to_i)
 
 
     if @prescription.save
-      redirect to patient_path(@patient.id)
+      redirect_to patient_path(@patient.id)
     else
       render :new
     end
   end
+
+  private
+
+
 end
