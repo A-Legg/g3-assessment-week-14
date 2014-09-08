@@ -9,13 +9,18 @@ class PrescriptionsController < ApplicationController
 
   def create
     @patient = Patient.find_by(params[:id])
-    @prescription = Prescription.new(
-      medication: params[:prescription][:medication],
-      dosage: params[:prescription][:dosage],
-      schedule: params[:prescription][:dosage],
-      # starts_on: Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i),
-      # ends_on: Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i)
-    )
+    @medications = Medication.all
+    @prescription = Prescription.new
+      @prescription.medication_id = params[:prescription][:medication_id]
+    @prescription.patient_id = @patient.id
+    @prescription.user_id = current_user.id
+      @prescription.dosage = params[:prescription][:dosage]
+      @prescription.schedule = params[:prescription][:schedule]
+      @prescription.starts_on = Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i)
+      @prescription.ends_on = Date.new(params[:date]['date(1i)'].to_i, params[:date]['date(2i)'].to_i, params[:date]['date(3i)'].to_i)
+
+
+
 
     if @prescription.save
       redirect to patient_path(@patient.id)

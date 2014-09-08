@@ -12,8 +12,8 @@
   </div>
 
  <div>
-<%= f.label :medication %>
-<%= f.select :medication, @medications.map { |c| [c.name, c.id]} %>
+<%= f.label :medication_id %>
+<%= f.select :medication_id, options_from_collection_for_select(@medications, 'id', 'name' ) %>
 </div>
   <div>
     <%= f.label :dosage %>
@@ -25,11 +25,11 @@
   </div>
   <div>
     <%= f.label :starts_on %>
-    <%= f.date_select :starts_on %>
+    <%= f.date_select :starts_on, prefix: :starts_on %>
   </div>
   <div>
     <%= f.label :ends_on %>
-    <%= f.date_select :ends_on%>
+    <%= f.date_select :ends_on, prefix: :ends_on%>
   </div>
 
   <div>
