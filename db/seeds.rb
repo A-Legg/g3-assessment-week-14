@@ -25,3 +25,5 @@ Patient.create!(first_name: "Finn", last_name: "Hudson")
 Medication.create!(name: "Tylenol")
 Medication.create!(name: "Cough Syrup")
 Medication.create!(name: "Advil")
+
+Prescription.create!(patient_id: "28", medication_id: "1", dosage: "200mg", schedule: "twice daily", medication: "Tylenol", starts_on: Time.now, ends_on: Time.now)

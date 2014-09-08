@@ -1,0 +1,38 @@
+<h1>Add a prescription to </h1>
+
+<%= form_for @prescription, url: "/patients/#{@patient.id}/prescriptions" do |f| %>
+
+  <div class="errors">
+    <% if @prescription.errors.full_messages.any? %>
+      <% @prescription.errors.full_messages.each do |error| %>
+        <%=  error %>
+      <% end %>
+
+    <% end %>
+  </div>
+
+ <div>
+<%= f.label :medication %>
+<%= f.select :medication, @medications.map { |c| [c.name, c.id]} %>
+</div>
+  <div>
+    <%= f.label :dosage %>
+    <%= f.text_field :dosage %>
+   </div>
+  <div>
+    <%= f.label :schedule %>
+    <%= f.text_field :schedule %>
+  </div>
+  <div>
+    <%= f.label :starts_on %>
+    <%= f.date_select :starts_on %>
+  </div>
+  <div>
+    <%= f.label :ends_on %>
+    <%= f.date_select :ends_on%>
+  </div>
+
+  <div>
+    <%= f.submit "Create Prescription" %>
+  </div>
+<% end %>
