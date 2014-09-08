@@ -5,7 +5,7 @@
   <div class="errors">
     <% if @prescription.errors.full_messages.any? %>
       <% @prescription.errors.full_messages.each do |error| %>
-        <%=  error %>
+       <ul><li> <%=  error %></li></ul>
       <% end %>
 
     <% end %>

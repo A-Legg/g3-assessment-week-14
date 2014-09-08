@@ -13,11 +13,13 @@
   <tbody>
 
 
+  <% @patient.prescriptions.each do |prescription| %>
     <tr>
-      <td><% %> </td>
+      <td><%= prescription.medication.name %></td>
+      <td><%= prescription.dosage %> <%= prescription.schedule %></td>
+      <td><%= prescription.starts_on %> - <%= prescription.ends_on %></td>
     </tr>
-
-
+  <% end %>
   </tbody>
 
 

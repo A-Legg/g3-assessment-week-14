@@ -1,6 +1,6 @@
 class Prescription < ActiveRecord::Base
   belongs_to :patient
-  has_many :medications
+  belongs_to :medication
 
 
 

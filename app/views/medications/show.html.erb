@@ -16,9 +16,15 @@
   </thead>
   <tbody>
 
-  <tr>
-    <td></td>
-  </tr>
+  <% @medication.prescriptions.each do |med| %>
+    <tr>
+      <td><%= med.patient.first_name %>  <%= med.patient.last_name %></td>
+      <td><%= med.dosage %> <%= med.schedule %></td>
+      <td><%= med.starts_on %> - <%= med.ends_on %></td>
+      <td> User</td>
+    </tr>
+  <% end %>
+  </tbody>
 
   </tbody>
 
